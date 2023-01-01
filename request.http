@@ -1,0 +1,133 @@
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+    "firstName": "nguyen",
+    "lastName": "tri",
+    "email": "nao@gmail.com",
+    "phone": "2323",
+    "gender": "male",
+    "address": "34A",
+    "password": "1234",
+    "role": "1"
+}
+
+###
+POST http://localhost:8080/account/login
+Content-Type: application/json
+
+{
+    "email": "nguyentri.alan@gmail.com",
+    "password": "123456"
+}
+
+###
+GET http://localhost:8080/user/info/esjupl360s5mixsm6s38
+Content-Type: application/json
+
+###
+GET http://localhost:8080/user/token
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0bXdkeXByZDRyN3R0dWx2bjJxdyIsImlhdCI6MTY3MjE5Njg0MH0.agPRCGwtWtFEm2sulNcpx5IxBuwOPyrg5I919FDkTqk
+
+
+###
+POST http://localhost:8080/category/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0Zjd6NXpuZXZrejljeDllZXoyMCIsImlhdCI6MTY3MTc4MTM0Nn0.sfcjaGyf86NTji0ikQhfkWPYjx_UtWiM2iiAt8JMXdo
+
+{
+    "name": "Naturals Language Processings"
+}
+
+###
+GET http://localhost:8080/category/qkxinaz2jnzu3vryzv07
+Content-Type: application/json
+
+###
+GET http://localhost:8080/role
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0bXdkeXByZDRyN3R0dWx2bjJxdyIsImlhdCI6MTY3MjE5NDM2MH0.bknFNc0MTCCJBxQJog7YCCdfWx1Qj2uqlvhphm_Gvws
+
+
+###
+PUT http://localhost:8080/category/edit
+Content-Type: application/json
+
+{
+    "id": "22bvlx6hkvj2hgk9x1wt",
+    "name": "Arduino"
+}
+
+
+###
+POST http://localhost:8080/product/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0bXdkeXByZDRyN3R0dWx2bjJxdyIsImlhdCI6MTY3MjMxOTIwNn0.dBH3Vv8sOBW0del74n8LJDC7zDdSOXKaBUMq49A2pHQ
+
+{
+    "name": "Mạch điều khiển servo MG996 MG995 SG90 UART",
+    "description": "Mạch điều khiển servo MG996 MG995 SG90 UART dùng để điều khiển Servo MG996R bánh răng kim loại, Servo MG995 bánh răng kim loại, Servo SG90",
+    "price": "129000"
+}
+
+###
+PUT http://localhost:8080/discount/edit
+Content-Type: application/json
+
+{
+    "productId": "zjh32a9v7foo058miw5y",
+    "value": "35"
+}
+
+###
+GET http://localhost:8080/distributor/check
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0bXdkeXByZDRyN3R0dWx2bjJxdyIsImlhdCI6MTY3MjIxMTkxM30.lsEuqcvX15AA8SHHBmqUoruJob2-aUSTTq-AR-dZTQc
+
+###
+PUT http://localhost:8080/warehouse/change
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc2p1cGwzNjBzNW1peHNtNnMzOCIsImlhdCI6MTY3MTc5OTE2NX0.wbkqYKkz4GKF22OswO8PYCrb95z1-Cm8JpU06vImjJw
+
+{
+    "productId": "zjh32a9v7foo058miw5y",
+    "type": false,
+    "quantity": "10"   
+}
+
+###
+POST http://localhost:8080/distributor/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0bXdkeXByZDRyN3R0dWx2bjJxdyIsImlhdCI6MTY3MjIxMTAyN30.CCENt-ZbvvrLEQh1wsBWfZSjQqORWp7rXAKIZMmNqpU
+
+{
+    "description": "ABC"
+}
+
+###
+POST http://localhost:8080/cart/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJienJrYW1wZzNxZjJwMnBvZm9heiIsImlhdCI6MTY3MTkzOTUyNX0.0KyalFL4RwEn40kwHrjyyH5w_MRqmCkFeAC0qt23UCQ
+
+{
+    "productId": "zjh32a9v7foo058miw5y",
+    "quantity": "2"
+}
+
+####
+POST http://localhost:8080/account/password/strength
+Content-Type: application/json
+
+{
+    "password": "tri@04042001"
+}
+
+###
+POST http://localhost:8080/type/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0bXdkeXByZDRyN3R0dWx2bjJxdyIsImlhdCI6MTY3MjQwMjE2OH0.ti6CJ_Q_9yeNfAecnfPktS2GIT0LFzBsxzlIwo2l3Z4
+
+{
+    "name": "Đồ Điện Tử"
+}
