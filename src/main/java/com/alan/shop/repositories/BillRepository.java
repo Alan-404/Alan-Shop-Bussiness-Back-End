@@ -15,4 +15,7 @@ public interface BillRepository extends JpaRepository<Bill, String> {
 
     @Query(value = BillQuery.paginateBillsByUser, nativeQuery = true)
     Optional<List<Bill>> paginateBillsByUser(String userId, int num, int offset);
+
+    @Query(value = BillQuery.getBillById, nativeQuery = true)
+    Optional<Bill> getBillById(String billId);
 }

@@ -58,4 +58,18 @@ public class BillServiceImpl implements BillService {
             return null;
         }
     }
+
+    @Override
+    public Bill getBillById(String billId){
+        try{
+            Optional<Bill> bill = this.billRepository.getBillById(billId);
+            if (bill.isPresent() == false){
+                return null;
+            }
+            return bill.get();
+        }
+        catch(Exception exception){
+            return null;
+        }
+    }
 }

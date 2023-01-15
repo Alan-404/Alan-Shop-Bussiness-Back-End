@@ -12,4 +12,7 @@ import com.alan.shop.utils.queries.OrderQuery;
 public interface OrderRepository extends JpaRepository<Order, String> {
     @Query(value = OrderQuery.queryOrdersByBill, nativeQuery = true)
     Optional<List<Order>> getOrdersByBill(String billId);
+
+    @Query(value = OrderQuery.queryOrderByBillAndProduct, nativeQuery = true)
+    Optional<Order> getOrderByBillAndProduct(String billId, String productId);
 }

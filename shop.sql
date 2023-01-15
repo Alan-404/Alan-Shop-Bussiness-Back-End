@@ -114,8 +114,12 @@ CREATE TABLE ORDERS(
 	BILL_ID VARCHAR(21) REFERENCES BILLS(ID),
 	PRODUCT_ID VARCHAR(21) REFERENCES PRODUCTS(ID),
 	PRICE REAL,
-	QUANTITY INT
+	QUANTITY INT,
+	REVIEWED BOOLEAN
 )
+
+UPDATE ORDERS SET REVIEWED = 'FALSE'
+
 
 CREATE TABLE BILLS(
 	ID VARCHAR(21) PRIMARY KEY,
@@ -137,6 +141,7 @@ CREATE TABLE REVIEW_PRODUCT(
 	USER_ID VARCHAR(21) REFERENCES USERS(ID),
 	PRODUCT_ID VARCHAR(21) REFERENCES PRODUCTS(ID),
 	BILL_ID VARCHAR(21) REFERENCES BILLS(ID),
+	CONTENT TEXT,
 	STAR INT,
 	CREATED_AT TIMESTAMP
 )
@@ -162,12 +167,13 @@ select * from distributors
 select * from products
 select * from discount
 select * from warehouse
+SELECT * FROM BILLS
 select * from history_warehouse
 SELECT * FROM ROLES
 select * from categories_item
 SELECT * FROM CARTS ORDER BY PRODUCT_ID
 select * from banners
-select * from orders where bill_id = 'mrvtvi2jx9i6iyr6xxo3'
+select * from orders
 delete from carts where id='o6zpumgkt7c7yr8v13hg'
 
 

@@ -19,6 +19,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order saveOrder(Order order){
+        order.setReviewed(false);
         return this.orderRepository.save(order);
     }
 
@@ -49,4 +50,44 @@ public class OrderServiceImpl implements OrderService {
             return null;
         }
     }
+
+    @Override
+    public boolean editOrder(Order order){
+        try{
+            this.orderRepository.save(order);
+            return true;
+        }
+        catch(Exception exception){
+            return false;
+        }
+    }
+
+    @Override
+    public Order getOrderById(String id){
+        try{
+            Optional<Order> order = this.orderRepository.findById(id);
+            if (order.isPresent() == false){
+                return null;
+            }
+            return order.get();
+        }
+        catch(Exception exception){
+            return null;
+        }
+    }
+
+    @Override
+    public Order getOrderByBillAndProduct(String billId, String productId){
+        try{
+            Optional<Order> order = this.orderRepository.getOrderByBillAndProduct(billId, productId);
+            if (order.isPresent() == false){
+                return null;
+            }
+            return order.get();
+        }
+        catch(Exception exception){
+            return null;
+        }
+    }
+
 }

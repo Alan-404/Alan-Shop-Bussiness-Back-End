@@ -1,8 +1,8 @@
 package com.alan.shop.models;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,14 +17,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "ORDERS")
-public class Order {
+@Table(name = "REVIEW_PRODUCT")
+public class ReviewProduct {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String billId;
+    private String id;
+    private String userId;
     private String productId;
-    private double price;
-    private int quantity;
-    private boolean reviewed;
+    private String billId;
+    private String content;
+    private int star;
+    private Timestamp createdAt;
 }
