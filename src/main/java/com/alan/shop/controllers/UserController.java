@@ -2,6 +2,9 @@ package com.alan.shop.controllers;
 
 
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +32,7 @@ import com.alan.shop.models.User;
 import com.alan.shop.services.AccountService;
 import com.alan.shop.services.HadoopService;
 import com.alan.shop.services.UserService;
+import com.alan.shop.utils.Constants;
 
 @RestController
 @RequestMapping("/user")
@@ -56,16 +60,18 @@ public class UserController {
             User checkUser = this.userService.getUserByEmail(registerDTO.getEmail());
             if (checkUser != null){
                 response.setMessage("Email has been taken");
-                return ResponseEntity.status(200).body(response);
+                return ResponseEntity.status(400).body(response);
             }
             
             User user = this.modelMapper.map(registerDTO, User.class);
             Account account = this.modelMapper.map(registerDTO, Account.class);
             User newUser = this.userService.addUser(user);
             account.setUserId(newUser.getId());
-            this.accountService.addAccount(account);
+            if (this.accountService.addAccount(account) == null){
+                return ResponseEntity.status(400).body(response);
+            }
 
-            this.hadoopService.saveMedia(registerDTO.getFile(), newUser.getId(), "users");
+            registerDTO.getFile().transferTo(new File(Constants.storagePath + "/users/" + newUser.getId() + ".jpg"));
 
             response.setSuccess(true);
             response.setUser(newUser);
@@ -73,7 +79,7 @@ public class UserController {
             return ResponseEntity.status(200).body(response);
         }
         catch(Exception exception){
-            System.out.println(exception);
+            exception.printStackTrace();
             response.setMessage("Internal Error Server");
             return ResponseEntity.status(500).body(response);
         }
@@ -131,7 +137,7 @@ public class UserController {
     @GetMapping("/avatar")
     public ResponseEntity<byte[]> getAvatarUser(@RequestParam String id){
         try{
-            return ResponseEntity.status(200).contentType(MediaType.IMAGE_JPEG).body(this.hadoopService.getImage(id, "users"));
+            return ResponseEntity.status(200).contentType(MediaType.IMAGE_JPEG).body(Files.readAllBytes(Paths.get(Constants.storagePath + "/users/" + id + ".jpg")));
         }
         catch(Exception exception){
             return null;

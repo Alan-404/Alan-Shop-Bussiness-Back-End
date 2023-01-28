@@ -146,6 +146,10 @@ CREATE TABLE REVIEW_PRODUCT(
 	CREATED_AT TIMESTAMP
 )
 
+
+INSERT INTO ROLES(NAME) VALUES ('ADMIN')
+INSERT INTO ROLES(NAME) VALUES ('USER')
+
 DROP TABLE REVIEW_PRODUCT
 
 select * from bills
@@ -158,7 +162,9 @@ drop table orders
 delete from bills
 delete from orders
 
+delete from users
 
+select * from accounts
 
 SELECT * FROM CATEGORIES
 select * from users
@@ -175,6 +181,7 @@ SELECT * FROM CARTS ORDER BY PRODUCT_ID
 select * from banners
 select * from orders
 delete from carts where id='o6zpumgkt7c7yr8v13hg'
+select * from type_product
 
 
 SELECT PRODUCTS.ID, PRODUCTS.NAME, PRODUCTS.DESCRIPTION, PRICE,DISCOUNT.VALUE AS DISCOUNT  FROM PRODUCTS, DISCOUNT WHERE PRODUCTS.ID = DISCOUNT.product_id

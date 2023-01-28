@@ -1,5 +1,6 @@
 package com.alan.shop.controllers;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,7 @@ import com.alan.shop.services.HadoopService;
 import com.alan.shop.services.ProductService;
 import com.alan.shop.services.WarehouseService;
 import com.alan.shop.unions.InfoProduct;
+import com.alan.shop.utils.Constants;
 
 @RestController
 @RequestMapping("/product")
@@ -90,11 +92,15 @@ public class ProductController {
                     this.categoryItemService.saveItem(new CategoryItem(newProduct.getId(), data.getCategories().get(i)));
                 }
             }
-            this.hadoopService.createFolder(newProduct.getId(), "products");
-            System.out.println(data.getImages().size());
+            //this.hadoopService.createFolder(newProduct.getId(), "products");
+            File dir = new File(Constants.storagePath + "/products/" + newProduct.getId());
+            dir.mkdir();
+
+
             if (data.getImages() != null){
                 for (int i = 0; i<data.getImages().size(); i++){
-                    this.hadoopService.saveMedia(data.getImages().get(i), Integer.toString(i), "products/" + newProduct.getId());
+                    //this.hadoopService.saveMedia(data.getImages().get(i), Integer.toString(i), "products/" + newProduct.getId());
+                    data.getImages().get(i).transferTo(new File(Constants.storagePath + "/products/" + newProduct.getId() + "/" + i + ".jpg"));
                 }
             }
 

@@ -38,9 +38,10 @@ public class ReviewProductController {
             if (userId == null){
                 return ResponseEntity.status(400).body(new Response(false, "Unauthorization"));
             }
+
             ReviewProduct review = this.modelMapper.map(data, ReviewProduct.class);
             review.setUserId(userId);
-
+            System.out.println(review);
             Order order = this.orderService.getOrderByBillAndProduct(data.getBillId(), data.getProductId());
             if (order == null){
                 return ResponseEntity.status(400).body(new Response(false, "Failed"));

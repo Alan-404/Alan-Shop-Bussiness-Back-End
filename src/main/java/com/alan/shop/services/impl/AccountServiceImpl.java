@@ -32,6 +32,7 @@ public class AccountServiceImpl implements AccountService {
             account.setPassword(this.bCryptPasswordEncoder.encode(account.getPassword()));
             return this.accountRepository.save(account);
         } catch (Exception exception) {
+            exception.printStackTrace();
             return null;
         }
     }

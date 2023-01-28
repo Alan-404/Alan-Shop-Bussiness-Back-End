@@ -14,5 +14,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AddCategoryDTO {
     private String name;
+    private String typeProduct;
     private MultipartFile file;
 }

@@ -22,6 +22,7 @@ public class Category {
     @Id
     private String id;
     private String name;
+    private String typeProduct;
     private Timestamp createdAt;
     private Timestamp modifiedAt;
 }

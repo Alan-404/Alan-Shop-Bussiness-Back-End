@@ -1,5 +1,7 @@
 package com.alan.shop.controllers;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.modelmapper.ModelMapper;
@@ -27,6 +29,7 @@ import com.alan.shop.services.AccountService;
 import com.alan.shop.services.CategoryService;
 import com.alan.shop.services.HadoopService;
 import com.alan.shop.services.RoleService;
+import com.alan.shop.utils.Constants;
 
 @RestController
 @RequestMapping("/category")
@@ -72,9 +75,7 @@ public class CategoryController {
                 return ResponseEntity.status(400).body(response);
             }
             Category newCategory = this.categoryService.saveCategory(category);
-
-            this.hadoopService.saveMedia(data.getFile(), newCategory.getId(), "categories");
-
+            data.getFile().transferTo(new File(Constants.storagePath + "/categories/" + newCategory.getId() + ".jpg"));
             response.buildSuccess(true).buildMessage("Saved Category").buildCategory(newCategory);
             return ResponseEntity.status(200).body(response);
         }
